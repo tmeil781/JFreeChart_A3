@@ -25,23 +25,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
+      #gnujaxp leads to dead end in repository so i have added it manually to lib and has been left in the lib, lib is not ignored. 
+      #Data utilities fail because it needs mockito dont know how to add
       # Runs a set of commands using the runners shell
       - name: Run tests
         run: |
-      #gnujaxp leads to dead end in repository so i have added it manually to lib and has been left in the lib, lib is not ignored. 
-      #Data utilities fail because it needs mockito dont know how to add 
-echo Test Begin
-mkdir bin
-mkdir lib
-curl https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.5.2/junit-platform-console-standalone-1.5.2.jar -o lib/junit-platform-console-standalone-1.5.2.jar
-curl https://repo1.maven.org/maven2/org/mockito/mockito-all/2.0.2-beta/mockito-all-2.0.2-beta.jar -o lib/mockito-all-2.0.2-beta.jar
-curl https://repo1.maven.org/maven2/jfree/jcommon/1.0.5/jcommon-1.0.5.jar -o lib/jcommon-1.0.5.jar
-curl https://repo1.maven.org/maven2/jfree/jcommon/1.0.0-rc1/jcommon-1.0.0-rc1.jar -o lib/jcommon-1.0.0-rc1.jar
-
-
-javac -d bin -cp bin:lib/* $(find src/ -name "*.java")
-
-javac -d bin -cp bin:lib/* $(find test/ -name "*.java")
-
-java -jar lib/junit-platform-console-standalone-1.5.2.jar --class-path bin --scan-class-path
-
+          echo Test Begin
+          mkdir bin
+          mkdir lib
+          curl https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.5.2/junit-platform-console-standalone-1.5.2.jar -o lib/junit-platform-console-standalone-1.5.2.jar
+          curl https://repo1.maven.org/maven2/org/mockito/mockito-all/2.0.2-beta/mockito-all-2.0.2-beta.jar -o lib/mockito-all-2.0.2-beta.jar
+          curl https://repo1.maven.org/maven2/jfree/jcommon/1.0.5/jcommon-1.0.5.jar -o lib/jcommon-1.0.5.jar
+          curl https://repo1.maven.org/maven2/jfree/jcommon/1.0.0-rc1/jcommon-1.0.0-rc1.jar -o lib/jcommon-1.0.0-rc1.jar
+          javac -d bin -cp bin:lib/* $(find src/ -name "*.java")
+          javac -d bin -cp bin:lib/* $(find test/ -name "*.java")
+          java -jar lib/junit-platform-console-standalone-1.5.2.jar --class-path bin --scan-class-path
