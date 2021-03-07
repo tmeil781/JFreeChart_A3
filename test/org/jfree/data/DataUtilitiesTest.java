@@ -1,6 +1,8 @@
 package org.jfree.data;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.AfterAll;
@@ -72,7 +74,7 @@ class DataUtilitiesTest {
 				when(keyedValues2.getValue(0)).thenReturn(3);
 				when(keyedValues2.getValue(1)).thenReturn(-2);
 				when(keyedValues2.getValue(2)).thenReturn(8);
-
+ 
 				when(keyedValues2.getKey(0)).thenReturn(0);
 				when(keyedValues2.getKey(1)).thenReturn(1);
 				when(keyedValues2.getKey(2)).thenReturn(2);
@@ -259,7 +261,7 @@ class DataUtilitiesTest {
     void createNumberArray2DNegative() {
         double[][] data = {{-1,8,5,-7},{6,2,-7,9},{-3,2,-1,4}};
         Number[][] actual = DataUtilities.createNumberArray2D(data);
-        assertEquals(data, actual);
+        assertEquals(data, actual); 
     }
     
     @Test
@@ -320,6 +322,34 @@ class DataUtilitiesTest {
 				);
 	}
 	
+/*
+ * White Box Testing 
+ * New tests below
+ * These tests are added to increase the coverage of the testing*/
 	
+    @Test
+    //Tests with null data for createNumberArrayNullData
+    void createNumberArrayNullData() {
+        Throwable exception = assertThrows(IllegalArgumentException.class, 
+        		() -> DataUtilities.createNumberArray(null));
+        assertEquals("Null 'data' argument.", exception.getMessage());
+    }
+    
+    @Test
+    //Tests with null data for createNumberArrayNullData2D
+    void createNumberArrayNullData2D() {
+        Throwable exception = assertThrows(IllegalArgumentException.class,
+        		() -> DataUtilities.createNumberArray2D(null));
+        assertEquals("Null 'data' argument", exception.getMessage());
+    }
+    
+    @Test
+    //Tests getCumulativePercentages with null data
+    void getCumulativePercentagesNullDatas() {
+    	Throwable exception = assertThrows(IllegalArgumentException.class,
+    			() -> DataUtilities.getCumulativePercentages(null));
+    	assertEquals("Null 'data'argument", exception.getMessage());
+    }
+      
 
 }

@@ -30,7 +30,7 @@ class RangeTest {
 	/*getLowerBound tests
 	 * Of course all of this is dependent on the range constructor working correctly
 	 * ranges that should be valid
-	 * and expected results
+	 * and expected actuals
 	 * (10, 20) -> 10
 	 * (0, 10)  -> 0
 	 * (-10, 0) -> -10
@@ -38,6 +38,7 @@ class RangeTest {
 	 * (-6.6, 10) -> -6.6
 	 * (1, 1) -> 1
 	 * */
+	
 	
 	@Test
 	void testGetLowerValid() {
@@ -79,7 +80,7 @@ class RangeTest {
 	/*getUpperBound tests
 	 * 
 	 * ranges that should be valid
-	 * and expected results
+	 * and expected actuals
 	 * (0, 10) -> 10
 	 * (-10, 0) -> 0
 	 * (-20, -10) -> -10
@@ -127,7 +128,7 @@ class RangeTest {
 	/*getLength tests
 	 * 
 	 * ranges that should be valid
-	 * and expected results
+	 * and expected actuals
 	 * 
 	 *(0, 5) -> 5
 	 * (-5, 5) ->10
@@ -165,7 +166,7 @@ class RangeTest {
 	 * 
 	 * 
 	 * 	 * ranges that should be valid
-	 * and expected results
+	 * and expected actuals
 	 * 
 	 * (1, 3) -> 2
 	 * (1, 1) -> 1
@@ -216,7 +217,7 @@ class RangeTest {
 	 * 
 	 * 
 	 * 	 * ranges that should be valid
-	 * and expected results
+	 * and expected actuals
 	 * 
 	 * (1, 3) 2-> True
 	 * (1, 1) 1-> True
@@ -286,7 +287,7 @@ class RangeTest {
     *
     *
     *      * ranges that should be valid
-    * and expected results
+    * and expected actuals
     *
     * (3, 20), (1,10) -> (1, 20)
     * (null), (null) => null
@@ -348,7 +349,7 @@ class RangeTest {
     *
     *
     *      * values and ranges that should be valid
-    * and expected results
+    * and expected actuals
     *
     * 10, (3,7) -> 7
     * -8, (3, 7) -> 3
@@ -394,7 +395,7 @@ class RangeTest {
     *
     *
     *      *ranges that should be valid
-    * and expected results
+    * and expected actuals
     *
     * (-3.0, 13.0), (-3.0, 13.0) -> true
     * (2.0, 10.0), null -> false
@@ -441,7 +442,7 @@ class RangeTest {
     *
     *
     *      *ranges that should be valid
-    * and expected results
+    * and expected actuals
     *
     * (2, 6), (range, 0.25, 0.5) -> (1, 8)
     * (-6, -2), (range, 0.25, 0.5) -> (-5, -4)
@@ -476,7 +477,7 @@ class RangeTest {
     *
     *
     *      * ranges that should be valid
-    * and expected results
+    * and expected actuals
     *
     * Range(5, 15) value(15) -> (5, 15)
     * Range(null, 15) -> (15, 15)
@@ -574,11 +575,11 @@ class RangeTest {
 	void shiftRegularTest() {
 		Range range1 = new Range(1, 5);
 		Range expected = new Range(3, 7);
-		Range result = Range.shift(range1, 2);
+		Range actual = Range.shift(range1, 2);
 		
 		assertAll(
-		 () -> assertEquals(result.getLowerBound(), expected.getLowerBound()),    
-		 () -> assertEquals(result.getUpperBound(), expected.getUpperBound())
+		 () -> assertEquals(actual.getLowerBound(), expected.getLowerBound()),    
+		 () -> assertEquals(actual.getUpperBound(), expected.getUpperBound())
 		);
 
 	}
@@ -589,7 +590,7 @@ class RangeTest {
 	void shiftDecimalTest() {
 		Range range1 = new Range(1, 5);
 		Range expected = new Range(3.5, 7.5);
-		Range result = Range.shift(range1, 2.5);
+		Range actual = Range.shift(range1, 2.5);
 		
 		assertAll(
 			() -> assertEquals(Range.shift(range1, 2.5).getLowerBound(), expected.getLowerBound()),    
@@ -604,10 +605,10 @@ class RangeTest {
 	void shiftNegativetoPositiveTest() {
 		Range range1 = new Range(-5, -2);
 		Range expected = new Range(0, 3);
-		Range result = Range.shift(range1, 5);
+		Range actual = Range.shift(range1, 5);
 		assertAll(
-				() -> assertEquals(result.getLowerBound(), expected.getLowerBound()),    
-				() -> assertEquals(result.getUpperBound(), expected.getUpperBound())
+				() -> assertEquals(actual.getLowerBound(), expected.getLowerBound()),    
+				() -> assertEquals(actual.getUpperBound(), expected.getUpperBound())
 		);
 	}
 	
@@ -617,10 +618,10 @@ class RangeTest {
 	void shiftNoRangeTest() {
 		Range range1 = new Range(1, 1);
 		Range expected = new Range(3, 3);
-		Range result = Range.shift(range1, 2);
+		Range actual = Range.shift(range1, 2);
 		assertAll(
-			() -> assertEquals(result.getLowerBound(), expected.getLowerBound()),    
-			() -> assertEquals(result.getUpperBound(), expected.getUpperBound())
+			() -> assertEquals(actual.getLowerBound(), expected.getLowerBound()),    
+			() -> assertEquals(actual.getUpperBound(), expected.getUpperBound())
 		);
 	}
 	
@@ -630,10 +631,10 @@ class RangeTest {
 	void shiftByZeroTest() {
 		Range range1 = new Range(1, 5);
 		Range expected = new Range(1, 5);
-		Range result = Range.shift(range1, 0);
+		Range actual = Range.shift(range1, 0);
 		assertAll(
-			() -> assertEquals(result.getLowerBound(), expected.getLowerBound()),    
-			() -> assertEquals(result.getUpperBound(), expected.getUpperBound())
+			() -> assertEquals(actual.getLowerBound(), expected.getLowerBound()),    
+			() -> assertEquals(actual.getUpperBound(), expected.getUpperBound())
 		);
 	}
 	
@@ -643,10 +644,10 @@ class RangeTest {
 	void shiftNegativeDeltaTest() {
 		Range range1 = new Range(1, 5);
 		Range expected = new Range(-2, 2);
-		Range result = Range.shift(range1, -3);
+		Range actual = Range.shift(range1, -3);
 		assertAll(
-			() -> assertEquals(result.getLowerBound(), expected.getLowerBound()),    
-			() -> assertEquals(result.getUpperBound(), expected.getUpperBound())
+			() -> assertEquals(actual.getLowerBound(), expected.getLowerBound()),    
+			() -> assertEquals(actual.getUpperBound(), expected.getUpperBound())
 		);
 	}
 	
@@ -656,10 +657,10 @@ class RangeTest {
 	void shiftZeroCrossTrueTest() {
 		Range range1 = new Range(-5, -1);
 		Range expected = new Range(-2, 10);
-		Range result = Range.shift(range1, 3, true);
+		Range actual = Range.shift(range1, 3, true);
 		assertAll(
-			() -> assertEquals(result.getLowerBound(), expected.getLowerBound()),    
-			() -> assertEquals(result.getUpperBound(), expected.getUpperBound())
+			() -> assertEquals(actual.getLowerBound(), expected.getLowerBound()),    
+			() -> assertEquals(actual.getUpperBound(), expected.getUpperBound())
 		);
 	}
 	
@@ -669,10 +670,10 @@ class RangeTest {
 	void shiftZeroCrossFalseTest() {
 		Range range1 = new Range(-5, -1);
 		Range expected = new Range(-2, 0);
-		Range result = Range.shift(range1, 5, false);
+		Range actual = Range.shift(range1, 5, false);
 		assertAll(
-			() -> assertEquals(result.getLowerBound(), expected.getLowerBound()),    
-			() -> assertEquals(result.getUpperBound(), expected.getUpperBound())
+			() -> assertEquals(actual.getLowerBound(), expected.getLowerBound()),    
+			() -> assertEquals(actual.getUpperBound(), expected.getUpperBound())
 		);
 	}
 	
@@ -682,10 +683,10 @@ class RangeTest {
 	void shiftNegativeDeltaFalseCrossTest() {
 		Range range1 = new Range(1, 5);
 		Range expected = new Range(0, 2);
-		Range result = Range.shift(range1, 5, false);
+		Range actual = Range.shift(range1, 5, false);
 		assertAll(
-			() -> assertEquals(result.getLowerBound(), expected.getLowerBound()),    
-			() -> assertEquals(result.getUpperBound(), expected.getUpperBound())
+			() -> assertEquals(actual.getLowerBound(), expected.getLowerBound()),    
+			() -> assertEquals(actual.getUpperBound(), expected.getUpperBound())
 		);
 	}
 	
@@ -695,8 +696,8 @@ class RangeTest {
 	void stringRegularTest() {
 		Range range1 = new Range(1, 5);
 		String expectedString = "Range[1, 5]";
-		String resultedString = range1.toString();
-		assertEquals(expectedString, resultedString);
+		String actualString = range1.toString();
+		assertEquals(expectedString, actualString);
 		
 	}
 	
@@ -706,8 +707,8 @@ class RangeTest {
 	void stringNegativeTest () {
 		Range range1 = new Range(-5, -3);
 		String expectedString = "Range[-5, -3]";
-		String resultedString = range1.toString();
-		assertEquals(expectedString, resultedString);
+		String actualString = range1.toString();
+		assertEquals(expectedString, actualString);
 	}
 	
 	@Test 
@@ -716,12 +717,115 @@ class RangeTest {
 	void stringDecimalTest() {
 		Range range1 = new Range(2.5, 5.21);
 		String expectedString = "Range[2.5, 5.21]";
-		String resultedString = range1.toString();
-		assertEquals(expectedString, resultedString);
+		String actualString = range1.toString();
+		assertEquals(expectedString, actualString);
 	}
 	
 	
+/**
+ * White Box Testing
+ * New tests are added below
+ * Tests are done to fulfill coverage requirements of bug testing
+ */
 
+	@Test
+	//Testing range method for when lower boundary is higher than upper boundary
+	void lowerGreaterThanUpperTest(){
+		String expectedString = "Range(double, double): require lower (30.0) <= upper (20.0).";
 
+		IllegalArgumentException threw = assertThrows(IllegalArgumentException.class, () -> new Range(30, 20));
+		
+		assertEquals(expectedString, threw.getMessage());
+
+	}
+	
+	@Test
+	//Testing to see is range interest when range2 lower boundary is less than range 1
+	void lowerLessThanLowerIntersectTest() {	
+		Range range1 = new Range(5, 10);
+		
+		assertTrue(range1.intersects(2,7));		
+	}
+	
+	@Test
+	void lowerAndUpperLessThanIntersectTest() {	
+		Range range1 = new Range(5, 10);
+		
+		assertTrue(range1.intersects(2,4));		
+	}
+	
+	@Test 
+	void reverseRangeIntersectTest() {	
+		Range range1 = new Range(5, 10);
+		
+		assertTrue(range1.intersects(6,4));		
+	}
+	
+	@Test
+	void valueHigherConstrainTest() {
+		Range range1 = new Range (3, 10);
+		double expected = 5;
+		
+		assertEquals(expected, range1.constrain(5));
+	}
+	
+	@Test
+	void valueLowerConstrainTest() {
+		Range range1 = new Range (5, 10);
+		double expected = 5;
+		
+		assertEquals(expected, range1.constrain(1));
+	}
+	
+	@Test
+	void nullRange2CombineTest() {
+		Range range1 = new Range(5, 10);
+		Range range2 = null;
+		
+		
+		assertEquals(range1, Range.combine(range1, range2));
+		
+	}
+	
+	@Test
+	void valueWithinRangeExpandToIncludeTest() {
+		Range range1 = new Range(5,10);
+		
+		assertEquals(range1, Range.expandToInclude(range1, 7));
+		
+	}
+	
+	@Test
+	void nullExpandTest(){
+		Range range1 = null;
+		String expectedString = "Null 'range' argument.";
+
+		IllegalArgumentException threw = assertThrows(IllegalArgumentException.class, () -> Range.expand(range1, 0.25, 0.5));
+		
+		assertEquals(expectedString, threw.getMessage());
+
+	}
+	
+	@Test
+	void shiftWithValueTest() {
+		Range range1 = new Range(0, 5);
+		Range expected = new Range(0, 5);
+		Range actual = Range.shift(range1, 0.0, false);
+		assertAll(
+				() -> assertEquals(actual.getLowerBound(), expected.getLowerBound()),    
+				() -> assertEquals(actual.getUpperBound(), expected.getUpperBound())
+			);
+	}
+	
+	@Test
+	void upperBoundEqualsTest() {
+		 Range range = new Range(-3.0, 12.0);
+	     Range range1 = new Range(-3.0, 13.0);
+	     boolean expected = false;
+	        
+	     boolean actual = range.equals(range1);
+	        
+	     assertEquals(expected, actual);
+	}
 	
 }
